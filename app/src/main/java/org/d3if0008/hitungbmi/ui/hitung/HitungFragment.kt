@@ -50,7 +50,11 @@ class HitungFragment : Fragment() {
 
         viewModel.getNavigasi().observe(viewLifecycleOwner, {
             if (it == null) return@observe
-            findNavController().navigate(HitungFragmentDirections.actionHitungFragmentToSaranFragment(it))
+            findNavController().navigate(
+                HitungFragmentDirections.actionHitungFragmentToSaranFragment(
+                    it
+                )
+            )
             viewModel.selesaiNavigasi()
         })
 
@@ -73,11 +77,16 @@ class HitungFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_about) {
-            findNavController().navigate(
-                R.id.action_hitungFragment_to_aboutFragment
-            )
-            return true
+
+        when (item.itemId) {
+            R.id.menu_histori -> {
+                findNavController().navigate(R.id.action_hitungFragment_to_historiFragment)
+                return true
+            }
+            R.id.menu_about -> {
+                findNavController().navigate(R.id.action_hitungFragment_to_aboutFragment)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
